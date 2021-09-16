@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MorningChallenges", "Mornin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04_Classes", "04_Classes\04_Classes.csproj", "{591620C1-DA96-48C1-BB00-85BB3F583C8D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05_InheritanceClasses", "05_InheritanceClasses\05_InheritanceClasses.csproj", "{0C20C553-908C-446C-808B-024BF0C74518}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05_InheritanceTests", "05_InheritanceTests\05_InheritanceTests.csproj", "{7F8FE0C7-A9F0-4720-A0AF-917A8F1E9EA7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,14 @@ Global
 		{591620C1-DA96-48C1-BB00-85BB3F583C8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{591620C1-DA96-48C1-BB00-85BB3F583C8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{591620C1-DA96-48C1-BB00-85BB3F583C8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C20C553-908C-446C-808B-024BF0C74518}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C20C553-908C-446C-808B-024BF0C74518}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C20C553-908C-446C-808B-024BF0C74518}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C20C553-908C-446C-808B-024BF0C74518}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F8FE0C7-A9F0-4720-A0AF-917A8F1E9EA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F8FE0C7-A9F0-4720-A0AF-917A8F1E9EA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F8FE0C7-A9F0-4720-A0AF-917A8F1E9EA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F8FE0C7-A9F0-4720-A0AF-917A8F1E9EA7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
