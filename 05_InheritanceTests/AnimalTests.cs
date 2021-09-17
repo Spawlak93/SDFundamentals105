@@ -1,6 +1,7 @@
 ﻿using _05_InheritanceClasses;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
 
 namespace _05_InheritanceTests
 {
@@ -31,6 +32,32 @@ namespace _05_InheritanceTests
 
             whiskers.Move();
             snickers.MakeSound();
+        }
+
+        [TestMethod]
+        public void CalicoConstructorTest_ShouldOutputToConsoleProperWriteLines()
+        {
+            Cat fluffy = new Calico();
+            Cat fluffBall = new Calico(false);
+        }
+
+        [TestMethod]
+        public void CheckingTypes_TypesShouldBehaveAsDeclared()
+        {
+            Calico catOne = new Calico();
+            Animal animalOne = new Calico();
+
+            List<Animal> animals = new List<Animal>();
+
+            animals.Add(catOne);
+            animals.Add(new RagdollCat());
+            animals.Add(new Animal());
+            animals.Add(new Cat());
+
+            foreach(Animal animal in animals)
+            {
+                animal.Move();
+            }
         }
     }
 }
