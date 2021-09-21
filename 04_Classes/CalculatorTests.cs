@@ -11,6 +11,7 @@ namespace _04_Classes
         {
             //newing up a calculator object
             Calculator calculator = new Calculator();
+            calculator.Add(12, 23);
 
                                          //Argument
             int result = calculator.Add(573, 892);

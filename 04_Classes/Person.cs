@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace _04_Classes
 {
-    class Person
+    public class Person
     {
 
         public Person() { }

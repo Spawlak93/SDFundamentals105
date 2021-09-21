@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DA194998-81F5-496B-BA06-46C9C6F4C179}</ProjectGuid>
+    <ProjectGuid>{14C73F9C-DAA5-4F11-84C4-9D377D46072B}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>MorningChallenges</RootNamespace>
-    <AssemblyName>MorningChallenges</AssemblyName>
+    <RootNamespace>_07_StreamingContent_Console</RootNamespace>
+    <AssemblyName>07_StreamingContent_Console</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -44,10 +44,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
+    <Compile Include="ProgramUI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\06_RepositoryPattern_Repository\06_RepositoryPattern_Repository.csproj">
+      <Project>{6E5FA2DC-C568-4CA5-981B-B121C7D80293}</Project>
+      <Name>06_RepositoryPattern_Repository</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
