@@ -1,4 +1,5 @@
-﻿using System;
+﻿using _07_StreamingContent_Console.Consoles;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,8 @@ namespace _07_StreamingContent_Console
     {
         static void Main(string[] args)
         {
-            ProgramUI ui = new ProgramUI();
+            RealConsole realConsole = new RealConsole();
+            ProgramUI ui = new ProgramUI(realConsole);
             ui.Run();
         }
     }

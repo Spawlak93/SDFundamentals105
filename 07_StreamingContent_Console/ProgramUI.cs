@@ -1,4 +1,5 @@
 ﻿using _06_RepositoryPattern_Repository;
+using _07_StreamingContent_Console.Consoles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +8,15 @@ using System.Threading.Tasks;
 
 namespace _07_StreamingContent_Console
 {
-    class ProgramUI
+    public class ProgramUI
     {
         private StreamingContentRepository _repo = new StreamingContentRepository();
+        private readonly IConsole _console;
+
+        public ProgramUI(IConsole console)
+        {
+            _console = console;
+        }
         public void Run()
         {
             SeedData();
@@ -24,9 +31,9 @@ namespace _07_StreamingContent_Console
             bool isRunning = true;
             while (isRunning)
             {
-                Console.Clear();
+                _console.Clear();
 
-                Console.WriteLine
+                _console.WriteLine
                     (
                         "Enter the number of your selection:\n" +
                         "1. Create new streaming content\n" +
@@ -37,7 +44,7 @@ namespace _07_StreamingContent_Console
                         "6. Exit"
                     );
 
-                string userInput = Console.ReadLine();
+                string userInput = _console.ReadLine();
 
                 switch (userInput)
                 {
@@ -66,9 +73,9 @@ namespace _07_StreamingContent_Console
                         //Exit
                         break;
                     default:
-                        Console.WriteLine("Please enter a valid number between 1 and 6.\n" +
+                        _console.WriteLine("Please enter a valid number between 1 and 6.\n" +
                             "Press any key to continue");
-                        Console.ReadKey();
+                        _console.ReadKey();
                         break;
 
                 }
@@ -78,28 +85,28 @@ namespace _07_StreamingContent_Console
         //Creating Content
         private void CreateNewContent()
         {
-            Console.Clear();
+            _console.Clear();
 
             StreamingContent content = new StreamingContent();
 
             //Title
-            Console.WriteLine("Please enter a title:");
-            content.Title = Console.ReadLine();
+            _console.WriteLine("Please enter a title:");
+            content.Title = _console.ReadLine();
 
             //Description
-            Console.WriteLine("Please enter a description:");
-            content.Description = Console.ReadLine();
+            _console.WriteLine("Please enter a description:");
+            content.Description = _console.ReadLine();
 
             //Runtime
-            Console.WriteLine("What is the runtime of the content");
-            content.RunTime = Convert.ToDouble(Console.ReadLine());
+            _console.WriteLine("What is the runtime of the content");
+            content.RunTime = Convert.ToDouble(_console.ReadLine());
 
             //Review rating
-            Console.WriteLine("What is the review score (0 - 10):");
-            content.ReviewRating = double.Parse(Console.ReadLine());
+            _console.WriteLine("What is the review score (0 - 10):");
+            content.ReviewRating = double.Parse(_console.ReadLine());
 
             // Maturity Rating
-            Console.WriteLine("Select a maturity rating: \n" +
+            _console.WriteLine("Select a maturity rating: \n" +
                 "1. G\n" +
                 "2. PG\n" +
                 "3. TV Y\n" +
@@ -110,15 +117,15 @@ namespace _07_StreamingContent_Console
                 "8. NR\n" +
                 "9. TV MA");
 
-            string maturityRatingString = Console.ReadLine();
+            string maturityRatingString = _console.ReadLine();
             int maturityRatingId = int.Parse(maturityRatingString);
             content.RatingMaturity = (MaturityRating)maturityRatingId;
 
-            //content.RatingMaturity = (MaturityRating)int.Parse(Console.ReadLine());
+            //content.RatingMaturity = (MaturityRating)int.Parse(_console.ReadLine());
 
             //genre
-            Console.WriteLine("what is the genre:");
-            content.Genre = Console.ReadLine();
+            _console.WriteLine("what is the genre:");
+            content.Genre = _console.ReadLine();
 
             _repo.AddContentToDirectory(content);
         }
@@ -127,7 +134,7 @@ namespace _07_StreamingContent_Console
         private void ShowAllContent()
         {
             //Clean slate to work from
-            Console.Clear();
+            _console.Clear();
 
             List<StreamingContent> listOfContent = _repo.GetContents();
 
@@ -143,10 +150,10 @@ namespace _07_StreamingContent_Console
         //Getting Specific Content(By Title)
         private void ShowContentTitle()
         {
-            Console.Clear();
+            _console.Clear();
 
-            Console.WriteLine("What Title are you looking for?");
-            string title = Console.ReadLine();
+            _console.WriteLine("What Title are you looking for?");
+            string title = _console.ReadLine();
 
             StreamingContent content = _repo.GetContentByTitle(title);
             //Verify that content is in our repository
@@ -158,7 +165,7 @@ namespace _07_StreamingContent_Console
             }
             else
             {
-                Console.WriteLine("Unfortunatley we don't have that title");
+                _console.WriteLine("Unfortunatley we don't have that title");
             }
 
             PressAnyKeyToContinue();
@@ -168,16 +175,16 @@ namespace _07_StreamingContent_Console
         //Update Content
         private void UpdateContent()
         {
-            Console.Clear();
+            _console.Clear();
 
-            Console.WriteLine("What is the title of the content you want to update:");
-            string targetTitle = Console.ReadLine();
+            _console.WriteLine("What is the title of the content you want to update:");
+            string targetTitle = _console.ReadLine();
 
             StreamingContent targetContent = _repo.GetContentByTitle(targetTitle);
 
             if(targetContent == null)
             {
-                Console.WriteLine("We are not able to find that content");
+                _console.WriteLine("We are not able to find that content");
                 PressAnyKeyToContinue();
                 return;
             }
@@ -185,28 +192,28 @@ namespace _07_StreamingContent_Console
             StreamingContent updatedContent = new StreamingContent();
 
             //Title
-            Console.WriteLine($"Original title: {targetContent.Title}\n" +
+            _console.WriteLine($"Original title: {targetContent.Title}\n" +
                 $"Please enter a new title:");
-            updatedContent.Title = Console.ReadLine();
+            updatedContent.Title = _console.ReadLine();
 
 
             //Description
-            Console.WriteLine($"Original description: {targetContent.Description}");
-            Console.WriteLine("Please enter a new description:");
-            updatedContent.Description = Console.ReadLine();
+            _console.WriteLine($"Original description: {targetContent.Description}");
+            _console.WriteLine("Please enter a new description:");
+            updatedContent.Description = _console.ReadLine();
 
             //Runtime
-            Console.WriteLine("Orignal Runtime: " + targetContent.RunTime + "\n" +
+            _console.WriteLine("Orignal Runtime: " + targetContent.RunTime + "\n" +
                 "What is the new runtime of the content");
-            updatedContent.RunTime = Convert.ToDouble(Console.ReadLine());
+            updatedContent.RunTime = Convert.ToDouble(_console.ReadLine());
 
             //Review rating
-            Console.WriteLine($"Original review score: {targetContent.ReviewRating}\n" +
+            _console.WriteLine($"Original review score: {targetContent.ReviewRating}\n" +
                 $"What is the new review score (0 - 10):");
-            updatedContent.ReviewRating = double.Parse(Console.ReadLine());
+            updatedContent.ReviewRating = double.Parse(_console.ReadLine());
 
             // Maturity Rating
-            Console.WriteLine($"Original maturity rating: {targetContent.RatingMaturity}\n" +
+            _console.WriteLine($"Original maturity rating: {targetContent.RatingMaturity}\n" +
                 $"Select a new maturity rating: \n" +
                 "1. G\n" +
                 "2. PG\n" +
@@ -218,24 +225,24 @@ namespace _07_StreamingContent_Console
                 "8. NR\n" +
                 "9. TV MA");
 
-            string maturityRatingString = Console.ReadLine();
+            string maturityRatingString = _console.ReadLine();
             int maturityRatingId = int.Parse(maturityRatingString);
             updatedContent.RatingMaturity = (MaturityRating)maturityRatingId;
 
-            //content.RatingMaturity = (MaturityRating)int.Parse(Console.ReadLine());
+            //content.RatingMaturity = (MaturityRating)int.Parse(_console.ReadLine());
 
             //genre
-            Console.WriteLine($"Original genre: {targetContent.Genre}\n" +
+            _console.WriteLine($"Original genre: {targetContent.Genre}\n" +
                 $"What is the new genre:");
-            updatedContent.Genre = Console.ReadLine();
+            updatedContent.Genre = _console.ReadLine();
 
             if(_repo.UpdateExistingContent(targetContent, updatedContent))
             {
-                Console.WriteLine("Update successful");
+                _console.WriteLine("Update successful");
             }
             else
             {
-                Console.WriteLine("Update Failed");
+                _console.WriteLine("Update Failed");
             }
 
             PressAnyKeyToContinue();
@@ -245,7 +252,7 @@ namespace _07_StreamingContent_Console
         //Deleting Content
         private void RemoveContentFromRepository()
         {
-            Console.Clear();
+            _console.Clear();
 
             List<StreamingContent> contentList = _repo.GetContents();
 
@@ -253,12 +260,12 @@ namespace _07_StreamingContent_Console
 
             foreach (StreamingContent content in contentList)
             {
-                Console.WriteLine($"{index}. {content.Title}");
+                _console.WriteLine($"{index}. {content.Title}");
                 index++;
             }
 
-            Console.WriteLine("What title would you like to remove.");
-            int targetTitleId = int.Parse(Console.ReadLine());
+            _console.WriteLine("What title would you like to remove.");
+            int targetTitleId = int.Parse(_console.ReadLine());
             int targetIndex = targetTitleId - 1;
 
             if(targetIndex >= 0 && targetIndex < contentList.Count)
@@ -267,16 +274,16 @@ namespace _07_StreamingContent_Console
 
                 if(_repo.DeleteContent(targetContent))
                 {
-                    Console.WriteLine($"{targetContent.Title} was successfully deleted");
+                    _console.WriteLine($"{targetContent.Title} was successfully deleted");
                 }
                 else
                 {
-                    Console.WriteLine("Oh no, something went wrong!");
+                    _console.WriteLine("Oh no, something went wrong!");
                 }
             }
             else
             {
-                Console.WriteLine("That is not a valid selection.");
+                _console.WriteLine("That is not a valid selection.");
             }
 
             PressAnyKeyToContinue();
@@ -285,7 +292,7 @@ namespace _07_StreamingContent_Console
         //Helper Methods
         private void DisplayContent(StreamingContent content)
         {
-            Console.WriteLine(
+            _console.WriteLine(
                     $"Title: {content.Title}\n" +
                     $"Description: {content.Description}\n" +
                     $"RunTime: {content.RunTime}\n" +
@@ -297,8 +304,8 @@ namespace _07_StreamingContent_Console
 
         private void PressAnyKeyToContinue()
         {
-            Console.WriteLine("Press any key to continue...");
-            Console.ReadKey();
+            _console.WriteLine("Press any key to continue...");
+            _console.ReadKey();
         }
 
         private void SeedData()
