@@ -10,6 +10,19 @@ namespace MorningChallenges
     {
         static void Main(string[] args)
         {
+            while (true)
+            {
+                try
+                {
+                    int.Parse(Console.ReadLine());
+                }
+                catch
+                {
+                    Console.WriteLine("Wrong");
+
+                }
+            }
+            
         }
     }
 }
